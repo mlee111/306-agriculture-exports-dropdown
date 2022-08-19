@@ -56,11 +56,11 @@ def make_figure(varname):
 
     subset = df[df['Type 1'] == varname]
     grouped_data = subset.groupby('Generation')
-    df = pd.DataFrame(grouped_data.count()['Type 1'])
+    df2 = pd.DataFrame(grouped_data.count()['Type 1'])
     
     barchart = go.Bar(
-        x=df.index,
-        y=df['Type 1'],
+        x=df2.index,
+        y=df2['Type 1'],
         name=varname
     )
     
