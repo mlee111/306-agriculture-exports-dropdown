@@ -63,7 +63,13 @@ def make_figure(varname):
         y=df['Type 1'],
         name=varname
     )
-    fig = go.Figure(data=barchart)
+    
+    chart_layout = go.Layout(
+        title = 'Pokemon by type'
+        xaxis = dict(title = 'Generation'), # x-axis label
+        yaxis = dict(title = '# of pokemon'), # y-axis label
+    )
+    fig = go.Figure(data=barchart, layout=chart_layout)
     return fig
 
 
