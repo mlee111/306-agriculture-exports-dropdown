@@ -63,8 +63,7 @@ def make_figure(varname):
         y=df['Type 1'],
         name=varname
     )
-    fig = go.Figure(data=[barchart])
-    fig.show()
+    fig = go.Figure(data=barchart)
     return fig
 
 
