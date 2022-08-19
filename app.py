@@ -65,7 +65,7 @@ def make_figure(varname):
     )
     
     chart_layout = go.Layout(
-        title = 'Pokemon by type'
+        title = 'Pokemon by type',
         xaxis = dict(title = 'Generation'), # x-axis label
         yaxis = dict(title = '# of pokemon'), # y-axis label
     )
