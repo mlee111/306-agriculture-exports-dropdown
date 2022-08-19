@@ -8,7 +8,7 @@ import pandas as pd
 ########### Define your variables ######
 
 tabtitle = 'Pokedex'
-sourceurl = 'https://plot.ly/python/choropleth-maps/'
+sourceurl = 'https://www.kaggle.com/datasets/abcsds/pokemon'
 githublink = 'https://github.com/mlee111/306-agriculture-exports-dropdown'
 # here's the list of possible columns to choose from.
 
@@ -34,7 +34,7 @@ app.layout = html.Div(children=[
                 dcc.Dropdown(
                     id='options-drop',
                     options=[{'label': i, 'value': i} for i in list_of_columns],
-                    value='Type 1'
+                    value='Water'
                 ),
         ], className='two columns'),
         html.Div([dcc.Graph(id='figure-1'),
