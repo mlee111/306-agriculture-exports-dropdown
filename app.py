@@ -36,10 +36,10 @@ app.layout = html.Div(children=[
                     options=[{'label': i, 'value': i} for i in list_of_columns],
                     value='Water'
                 ),
-        ], className='two columns'),
+        ]),
         html.Div([dcc.Graph(id='figure-1'),
-            ], className='ten columns'),
-    ], className='twelve columns'),
+            ]),
+    ]),
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A("Data Source", href=sourceurl),
@@ -54,7 +54,7 @@ def make_figure(varname):
     mygraphtitle = f'Pokemon grouped by generation'
     mycolorbartitle = "Num Pokemon"
 
-    subset = df[df['Type 1'] == 'Water']
+    subset = df[df['Type 1'] == varname]
     grouped_data = subset.groupby('Generation')
     df = pd.DataFrame(grouped_data.count()['Type 1'])
     
