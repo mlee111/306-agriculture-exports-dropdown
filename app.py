@@ -12,11 +12,10 @@ sourceurl = 'https://www.kaggle.com/datasets/abcsds/pokemon'
 githublink = 'https://github.com/mlee111/306-agriculture-exports-dropdown'
 # here's the list of possible columns to choose from.
 
-list_of_columns = ['Water', 'Grass', 'Fire', 'Normal', 'Bug', 'Poison', 'Electric', 'Fairy', 'Psychic', 'Dragon', 'Dark', 'Ground', 'Fighting', 'Rock', 'Ice']
-########## Set up the chart
 
-import pandas as pd
+########## Set up the chart
 df = pd.read_csv('assets/Pokemon.csv')
+list_of_columns = df['Type 1'].unique()
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
