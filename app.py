@@ -54,7 +54,7 @@ def make_figure(varname):
     mygraphtitle = f'Pokemon grouped by generation'
     mycolorbartitle = "Num Pokemon"
 
-    subset = df[df['Type 1'] == varname]
+    subset = df[df['Type 1'] == 'Water']
     grouped_data = subset.groupby('Generation')
     df = pd.DataFrame(grouped_data.count()['Type 1'])
     
