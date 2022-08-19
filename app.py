@@ -7,19 +7,16 @@ import pandas as pd
 
 ########### Define your variables ######
 
-tabtitle = 'Old McDonald'
-sourceurl = 'https://plot.ly/python/choropleth-maps/'
-githublink = 'https://github.com/austinlasseter/agriculture-exports-map'
+tabtitle = 'Pokedex'
+# sourceurl = 'https://plot.ly/python/choropleth-maps/'
+githublink = 'https://github.com/mlee111/306-agriculture-exports-dropdown'
 # here's the list of possible columns to choose from.
-list_of_columns =['total exports', 'beef', 'pork', 'poultry',
-       'dairy', 'fruits fresh', 'fruits proc', 'total fruits', 'veggies fresh',
-       'veggies proc', 'total veggies', 'corn', 'wheat', 'cotton']
 
-
+list_of_columns = ['Water', 'Grass', 'Fire', 'Normal', 'Bug', 'Poison', 'Electric', 'Fairy', 'Psychic', 'Dragon', 'Dark', 'Ground', 'Fighting', 'Rock', 'Ice']
 ########## Set up the chart
 
 import pandas as pd
-df = pd.read_csv('assets/usa-2011-agriculture.csv')
+df = pd.read_csv('assets/Pokemon.csv')
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -30,14 +27,14 @@ app.title=tabtitle
 ########### Set up the layout
 
 app.layout = html.Div(children=[
-    html.H1('2011 Agricultural Exports, by State'),
+    html.H1('Pokemon Data'),
     html.Div([
         html.Div([
                 html.H6('Select a variable for analysis:'),
                 dcc.Dropdown(
                     id='options-drop',
                     options=[{'label': i, 'value': i} for i in list_of_columns],
-                    value='corn'
+                    value='Type 1'
                 ),
         ], className='two columns'),
         html.Div([dcc.Graph(id='figure-1'),
@@ -54,24 +51,20 @@ app.layout = html.Div(children=[
 @app.callback(Output('figure-1', 'figure'),
              [Input('options-drop', 'value')])
 def make_figure(varname):
-    mygraphtitle = f'Exports of {varname} in 2011'
-    mycolorscale = 'ylorrd' # Note: The error message will list possible color scales.
-    mycolorbartitle = "Millions USD"
+    mygraphtitle = f'Pokemon grouped by generation'
+    mycolorbartitle = "Num Pokemon"
 
-    data=go.Choropleth(
-        locations=df['code'], # Spatial coordinates
-        locationmode = 'USA-states', # set of locations match entries in `locations`
-        z = df[varname].astype(float), # Data to be color-coded
-        colorscale = mycolorscale,
-        colorbar_title = mycolorbartitle,
+    subset = df[df['Type 1'] == varname]
+    grouped_data = subset.groupby('Generation')
+    df = pd.DataFrame(grouped_data.count()['Type 1'])
+    
+    barchart = go.Bar(
+        x=df.index,
+        y=df['Type 1'],
+        name=varname
     )
-    fig = go.Figure(data)
-    fig.update_layout(
-        title_text = mygraphtitle,
-        geo_scope='usa',
-        width=1200,
-        height=800
-    )
+    fig = go.Figure(data=[barchart])
+    fig.show()
     return fig
 
 
