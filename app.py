@@ -8,7 +8,7 @@ import pandas as pd
 ########### Define your variables ######
 
 tabtitle = 'Pokedex'
-# sourceurl = 'https://plot.ly/python/choropleth-maps/'
+sourceurl = 'https://plot.ly/python/choropleth-maps/'
 githublink = 'https://github.com/mlee111/306-agriculture-exports-dropdown'
 # here's the list of possible columns to choose from.
 
